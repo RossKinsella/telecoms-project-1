@@ -45,9 +45,5 @@
     <orderEntry type="jdk" jdkName="RVM: ruby-2.3.0 [telecoms-project-1]" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.11.2, RVM: ruby-2.3.0 [telecoms-project-1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="daemons (v1.2.3, RVM: ruby-2.3.0 [telecoms-project-1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="eventmachine (v1.0.9.1, RVM: ruby-2.3.0 [telecoms-project-1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rack (v1.6.4, RVM: ruby-2.3.0 [telecoms-project-1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="thin (v1.6.4, RVM: ruby-2.3.0 [telecoms-project-1]) [gem]" level="application" />
   </component>
 </module>
