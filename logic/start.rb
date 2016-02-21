@@ -1,5 +1,6 @@
 require 'openssl'
 require 'socket'
+require 'CGI'
 require_relative 'self_signed_certificate.rb'
 require_relative 'logger.rb'
 require_relative 'request_handler.rb'
