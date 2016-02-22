@@ -17,10 +17,12 @@ class ProxyHttpServer
 
   def self.block_host host
     @@blocked_hosts.add host
+    ProxyHttpServer.management_console
   end
 
   def self.unblock_host host
     @@blocked_hosts.delete host
+    ProxyHttpServer.management_console
   end
 
   def self.management_console
@@ -28,12 +30,14 @@ class ProxyHttpServer
     erb.result binding
   end
 
+  root = File.expand_path "../"
   server = WEBrick::HTTPProxyServer.new(
     :Port => 8989,
-    :ProxyContentHandler => method(:proxy_content_handler)
+    :ProxyContentHandler => method(:proxy_content_handler),
+    :DocumentRoot => root
   )
 
-  server.mount_proc '/' do |req, res|
+  server.mount_proc '/management_console' do |req, res|
     res.body = ProxyHttpServer.management_console
   end
 
@@ -46,7 +50,6 @@ class ProxyHttpServer
   end
 
   server.start
-
 end
 
 server = Thread.new do
