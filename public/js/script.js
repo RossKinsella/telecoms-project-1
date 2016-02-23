@@ -13,12 +13,12 @@ $(document).ready(function(){
         var host = $(this).attr('host');
         var command = $(this).attr('command');
         message = {command:command, host:host};
-        ws.send(JSON.stringify(message));
+        webSocket.send(JSON.stringify(message));
     });
 
     // WebSocket magic
-    ws = new WebSocket("ws://localhost:4020");
-    ws.onmessage = function(evt) {
+    webSocket = new WebSocket("ws://localhost:4020");
+    webSocket.onmessage = function(evt) {
         message = JSON.parse(evt.data);
         if (message['command']) {
             if (message['command'] == 'new_block') {

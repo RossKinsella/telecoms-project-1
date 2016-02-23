@@ -29,4 +29,3 @@ class Blocker
   end
 
 end
-

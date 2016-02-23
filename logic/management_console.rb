@@ -8,12 +8,12 @@ class ManagementConsole
 
   def self.start
     puts 'Starting management console'
-    EventMachine::WebSocket.start(:host => '0.0.0.0', :port => MANAGEMENT_CONSOLE_PORT) do |ws|
-      ws.onopen {
+    EventMachine::WebSocket.start(:host => '0.0.0.0', :port => MANAGEMENT_CONSOLE_PORT) do |web_socket|
+      web_socket.onopen {
         puts 'New client connected'
-        @@clients << ws
+        @@clients << web_socket
       }
-      ws.onmessage { |msg|
+      web_socket.onmessage { |msg|
         puts "Recieved #{msg}"
         msg = JSON.parse msg
 
@@ -27,9 +27,9 @@ class ManagementConsole
 
         end
       }
-      ws.onclose   {
+      web_socket.onclose   {
         puts 'WebSocket closed'
-        @@clients.delete ws
+        @@clients.delete web_socket
       }
     end
   end

@@ -40,5 +40,3 @@ class ProxyService
   end
 
 end
-
-
