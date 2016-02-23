@@ -23,36 +23,45 @@ $(document).ready(function(){
         if (message['command']) {
             if (message['command'] == 'new_block') {
                 var host = message["host"];
-                var newRow = "<tr id='block-" + host + "'><td>" + host + "</td><td style='padding-left:50px'><a class ='ajax' href='' host =" + host + " command = 'unblock'>Unblock</a></td></tr>"
+                var newRow = "<tr id='block-" + host + "'>" +
+                    "<td>" + host + "</td>" +
+                    "<td style='padding-left:50px'>" +
+                    "<a class ='ajax' href='' host =" + host + " command = 'unblock'>Unblock</a></td></tr>"
                 $("#blocked-hosts").append(newRow);
             }
+
             if (message['command'] == 'removed_block') {
                 var encoded_host = message['host'].split('.').join('\\.');
                 var rowToRemove = $("#block-" + encoded_host);
                 rowToRemove.remove();
             }
-            if (message['command'] == 'new_traffic') {
+
+            if (message['command'] == 'log_traffic') {
                 var trafficContainer = $('#traffic');
                 var type = message['traffic_type'];
                 var newElement;
                 if (type == 'blocked') {
-                    newElement = "<tr style='color:red;max-width:60%;word-wrap: break-word;margin-top:15px'><td>" + message['request'] + "</td><td style='padding-left: 35px'>Blocked</td>"
+                    newElement = "<tr style='color:red;max-width:60%;word-wrap: break-word;margin-top:15px'>" +
+                        "<td>" + message['request'] + "</td>" +
+                        "<td style='padding-left: 35px'>Blocked</td>"
                 }
                 else if (type == 'cached') {
-                    newElement = "<tr style='color:blueviolet;max-width:60%;word-wrap: break-word;margin-top:15px'><td>" + message['request'] + "</td><td style='padding-left: 35px'>Fetched from cache</td>"
+                    newElement = "<tr style='color:blueviolet;max-width:60%;word-wrap: break-word;margin-top:15px'>" +
+                        "<td>" + message['request'] + "</td>" +
+                        "<td style='padding-left: 35px'>Satisfied from cache</td>"
                 }
                 else if (type == 'added_to_cache') {
-                    newElement = "<tr style='color:darkgreen;max-width:60%;word-wrap: break-word;margin-top:15px'><td>" + message['request'] + "</td><td style='padding-left: 35px'>Added to cache</td>"
+                    newElement = "<tr style='color:darkgreen;max-width:60%;word-wrap: break-word;margin-top:15px'>" +
+                        "<td>" + message['request'] + "</td>" +
+                        "<td style='padding-left: 35px'>Added to cache</td>"
                 }
                 else {
-                    newElement = "<tr><td style='max-width:60%;word-wrap: break-word;margin-top:15px'>" + message['request'] + "</td><td style='padding-left: 35px'>Fetched from net</td>"
+                    newElement = "<tr style='max-width:60%;word-wrap: break-word;margin-top:15px'>" +
+                        "<td>" + message['request'] + "</td>" +
+                        "<td style='padding-left: 35px'>Satisfied over network</td>"
                 }
                 trafficContainer.append(newElement);
             }
         }
-    };
-    ws.onclose = function() {  };
-    ws.onopen = function() {
-
     };
 });

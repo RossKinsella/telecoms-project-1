@@ -1,3 +1,3 @@
 gem install bundle
 bundle install
-ruby logic/ProxyHttpServer.rb
+ruby logic/start.rb

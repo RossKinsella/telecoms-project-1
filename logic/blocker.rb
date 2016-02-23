@@ -1,8 +1,9 @@
 require 'set'
 
 class Blocker
-  @@blocked_hosts = Set.new ['youtube.com', 'www.facebook.com']
+  @@blocked_hosts = Set.new %w(youtube.com www.facebook.com)
 
+  # For use by ManagementConsole in initial render
   def self.blocked_hosts
     @@blocked_hosts
   end

@@ -1,4 +1,4 @@
-MIN_CACHED_RESPONSE_SIZE = 5000
+MIN_CACHED_RESPONSE_SIZE = 200
 
 class Cache
   @@entries = {}
@@ -8,14 +8,14 @@ class Cache
   end
 
   def self.retrieve (request)
-    message = {:command => 'new_traffic', :traffic_type => 'cached', :request => request.request_line}
+    message = {:command => 'log_traffic', :traffic_type => 'cached', :request => request.request_line}
     ManagementConsole.message_clients message
     @@entries[request.request_line]
   end
 
   def self.cache (request, response)
     @@entries[request.request_line] = response
-    message = {:command => 'new_traffic', :traffic_type => 'added_to_cache', :request => request.request_line}
+    message = {:command => 'log_traffic', :traffic_type => 'added_to_cache', :request => request.request_line}
     ManagementConsole.message_clients message
   end
 
