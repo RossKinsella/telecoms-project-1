@@ -8,8 +8,10 @@ require 'json'
 PROXY_PORT = 3020
 MANAGEMENT_CONSOLE_PORT = 4020
 
+MIN_CACHE_RESPONSE_SIZE = 5000
+
 class ProxyHttpServer
-  @@blocked_hosts = Set.new ['ie.ign.com', 'youtube.com', 'www.facebook.com']
+  @@blocked_hosts = Set.new ['youtube.com', 'www.facebook.com']
 
   def proxy_content_handler(req, res)
     if @@blocked_hosts.any? { |host| req.request_line.include?(host) }
@@ -25,12 +27,30 @@ class ProxyHttpServer
       socket = Thread.current[:WEBrickSocket]
       res.send_response socket
     else
-      message = {:command => 'new_traffic', :traffic_type => 'fetched_from_net', :request => req.request_line}
-      @@clients.each do |client|
-        client.send message.to_json
+      if(req.request_method == "GET" && !req.request_line.include?("localhost")) && res.body.size > MIN_CACHE_RESPONSE_SIZE
+        # Added to cache
+        CustomHTTPProxyServer.cache[req.request_line] = res
+        message = {:command => 'new_traffic', :traffic_type => 'added_to_cache', :request => req.request_line}
+        @@clients.each do |client|
+          client.send message.to_json
+        end
+      else
+        # Fetched directly
+        message = {:command => 'new_traffic', :traffic_type => 'fetched_from_net', :request => req.request_line}
+        ProxyHttpServer.clients.each do |client|
+          client.send message.to_json
+        end
       end
     end
 
+  end
+
+  def self.clients
+    @@clients
+  end
+
+  def self.blocked_hosts
+    @@blocked_hosts
   end
 
   def self.block_host host

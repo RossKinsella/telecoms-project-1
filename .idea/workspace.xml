@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="686d2800-b497-4099-8b32-060349f336d2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/custom_http_proxy_server.rb" afterPath="$PROJECT_DIR$/logic/custom_http_proxy_server.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/proxy_http_server.rb" afterPath="$PROJECT_DIR$/logic/proxy_http_server.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/management_console.html.erb" afterPath="$PROJECT_DIR$/public/html/management_console.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/script.js" afterPath="$PROJECT_DIR$/public/js/script.js" />
@@ -18,7 +20,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/telecoms-project-1@proxy_http_server.coverage" NAME="proxy_http_server Coverage Results" MODIFIED="1456202046203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/logic" MODULE_NAME="telecoms-project-1" />
+    <SUITE FILE_PATH="coverage/telecoms-project-1@proxy_http_server.coverage" NAME="proxy_http_server Coverage Results" MODIFIED="1456204910455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/logic" MODULE_NAME="telecoms-project-1" />
     <SUITE FILE_PATH="coverage/telecoms-project-1@server.coverage" NAME="server Coverage Results" MODIFIED="1456076668351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="telecoms-project-1" />
     <SUITE FILE_PATH="coverage/telecoms-project-1@temp.coverage" NAME="temp Coverage Results" MODIFIED="1454688822540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="telecoms-project-1" />
     <SUITE FILE_PATH="coverage/telecoms-project-1@start.coverage" NAME="start Coverage Results" MODIFIED="1456167765587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/logic" MODULE_NAME="telecoms-project-1" />
@@ -35,8 +37,18 @@
       <file leaf-file-name="proxy_http_server.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/logic/proxy_http_server.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3723404">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.69148934">
+              <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="custom_http_proxy_server.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/logic/custom_http_proxy_server.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -45,12 +57,13 @@
       <file leaf-file-name="management_console.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/html/management_console.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.5">
-              <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+            <state vertical-scroll-proportion="-5.0">
+              <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#th#1;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -63,14 +76,17 @@
         <entry file="file://$PROJECT_DIR$/public/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+              <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
               <folding>
-                <marker date="1456201884000" expanded="true" signature="883:900" placeholder="..." />
-                <marker date="1456201884000" expanded="true" signature="1581:1590" placeholder="..." />
-                <marker date="1456201884000" expanded="true" signature="1638:1656" placeholder="..." />
-                <marker date="1456201884000" expanded="true" signature="1780:1796" placeholder="..." />
-                <marker date="1456201884000" expanded="true" signature="1844:1862" placeholder="..." />
-                <marker date="1456201884000" expanded="true" signature="2014:2032" placeholder="..." />
+                <marker date="1456204092000" expanded="true" signature="883:900" placeholder="..." />
+                <marker date="1456204092000" expanded="true" signature="1581:1642" placeholder="..." />
+                <marker date="1456204092000" expanded="true" signature="1690:1708" placeholder="..." />
+                <marker date="1456204092000" expanded="true" signature="1832:1900" placeholder="..." />
+                <marker date="1456204092000" expanded="true" signature="1948:1966" placeholder="..." />
+                <marker date="1456204092000" expanded="true" signature="2109:2176" placeholder="..." />
+                <marker date="1456204092000" expanded="true" signature="2224:2242" placeholder="..." />
+                <marker date="1456204092000" expanded="true" signature="2355:2406" placeholder="..." />
+                <marker date="1456204092000" expanded="true" signature="2450:2468" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -93,9 +109,9 @@
         <option value="$PROJECT_DIR$/public/html/blocked.html.erb" />
         <option value="$PROJECT_DIR$/public/html/management_console.html" />
         <option value="$PROJECT_DIR$/logic/CustomHTTPProxyServer.rb" />
-        <option value="$PROJECT_DIR$/logic/custom_http_proxy_server.rb" />
-        <option value="$PROJECT_DIR$/public/js/script.js" />
         <option value="$PROJECT_DIR$/public/html/management_console.html.erb" />
+        <option value="$PROJECT_DIR$/public/js/script.js" />
+        <option value="$PROJECT_DIR$/logic/custom_http_proxy_server.rb" />
         <option value="$PROJECT_DIR$/logic/proxy_http_server.rb" />
       </list>
     </option>
@@ -511,7 +527,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="57" />
+      <option name="time" value="64" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -676,14 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logic/custom_http_proxy_server.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21276596">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41843972">
@@ -708,14 +716,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+          <folding>
+            <marker date="1456204092000" expanded="true" signature="883:900" placeholder="..." />
+            <marker date="1456204092000" expanded="true" signature="1581:1642" placeholder="..." />
+            <marker date="1456204092000" expanded="true" signature="1690:1708" placeholder="..." />
+            <marker date="1456204092000" expanded="true" signature="1832:1900" placeholder="..." />
+            <marker date="1456204092000" expanded="true" signature="1948:1966" placeholder="..." />
+            <marker date="1456204092000" expanded="true" signature="2109:2176" placeholder="..." />
+            <marker date="1456204092000" expanded="true" signature="2224:2242" placeholder="..." />
+            <marker date="1456204092000" expanded="true" signature="2355:2406" placeholder="..." />
+            <marker date="1456204092000" expanded="true" signature="2450:2468" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/html/management_console.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5">
-          <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+        <state vertical-scroll-proportion="-5.0">
+          <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#th#1;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -723,25 +750,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/script.js">
+    <entry file="file://$PROJECT_DIR$/logic/custom_http_proxy_server.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
-          <folding>
-            <marker date="1456201884000" expanded="true" signature="883:900" placeholder="..." />
-            <marker date="1456201884000" expanded="true" signature="1581:1590" placeholder="..." />
-            <marker date="1456201884000" expanded="true" signature="1638:1656" placeholder="..." />
-            <marker date="1456201884000" expanded="true" signature="1780:1796" placeholder="..." />
-            <marker date="1456201884000" expanded="true" signature="1844:1862" placeholder="..." />
-            <marker date="1456201884000" expanded="true" signature="2014:2032" placeholder="..." />
-          </folding>
+          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/logic/proxy_http_server.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3723404">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.69148934">
+          <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
           <folding />
         </state>
       </provider>

@@ -36,13 +36,16 @@ $(document).ready(function(){
                 var type = message['traffic_type'];
                 var newElement;
                 if (type == 'blocked') {
-                    newElement = "<tr style='color:red'><td>" + message['request'] + "</td><td style='padding-left: 35px'>Blocked</td>"
+                    newElement = "<tr style='color:red;max-width:60%;word-wrap: break-word;margin-top:15px'><td>" + message['request'] + "</td><td style='padding-left: 35px'>Blocked</td>"
                 }
                 else if (type == 'cached') {
-                    newElement = "<tr style='color:blueviolet'><td>" + message['request'] + "</td><td style='padding-left: 35px'>Fetched from cache</td>"
+                    newElement = "<tr style='color:blueviolet;max-width:60%;word-wrap: break-word;margin-top:15px'><td>" + message['request'] + "</td><td style='padding-left: 35px'>Fetched from cache</td>"
+                }
+                else if (type == 'added_to_cache') {
+                    newElement = "<tr style='color:darkgreen;max-width:60%;word-wrap: break-word;margin-top:15px'><td>" + message['request'] + "</td><td style='padding-left: 35px'>Added to cache</td>"
                 }
                 else {
-                    newElement = "<tr><td>" + message['request'] + "</td><td style='padding-left: 35px'>Fetched from net</td>"
+                    newElement = "<tr><td style='max-width:60%;word-wrap: break-word;margin-top:15px'>" + message['request'] + "</td><td style='padding-left: 35px'>Fetched from net</td>"
                 }
                 trafficContainer.append(newElement);
             }
