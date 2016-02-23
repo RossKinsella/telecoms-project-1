@@ -1,3 +1,4 @@
+require_relative 'custom_http_proxy_server.rb'
 require 'webrick'
 require 'webrick/httpproxy'
 require 'set'
@@ -8,15 +9,15 @@ PROXY_PORT = 3020
 MANAGEMENT_CONSOLE_PORT = 4020
 
 class ProxyHttpServer
-  @@blocked_hosts = Set.new ['ign.com']
+  @@blocked_hosts = Set.new ['ie.ign.com', 'youtube.com', 'www.facebook.com']
 
   def proxy_content_handler(req, res)
-    # req.query['lala']
-    # puts "//////////////////\n[REQUEST] " + req.request_line
-    if @@blocked_hosts.include? req.host
+    if @@blocked_hosts.any? { |host| req.request_line.include?(host) }
       res.header['content-type'] = 'text/html'
       res.header.delete('content-encoding')
       res.body = "Access is denied."
+      socket = Thread.current[:WEBrickSocket]
+      res.send_response socket
     end
   end
 
@@ -48,7 +49,8 @@ class ProxyHttpServer
   def initialize_proxy
     puts 'Starting proxy'
     root = File.expand_path "../"
-    server = WEBrick::HTTPProxyServer.new(
+
+    server = CustomHTTPProxyServer.new(
         :Port => PROXY_PORT,
         :ProxyContentHandler => method(:proxy_content_handler),
         :DocumentRoot => root
