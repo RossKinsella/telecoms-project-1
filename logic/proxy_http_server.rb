@@ -1,11 +1,16 @@
 require 'webrick'
 require 'webrick/httpproxy'
 require 'set'
+require 'em-websocket'
+require 'json'
+
+PROXY_PORT = 3020
+MANAGEMENT_CONSOLE_PORT = 4020
 
 class ProxyHttpServer
   @@blocked_hosts = Set.new ['ign.com']
 
-  def self.proxy_content_handler(req, res)
+  def proxy_content_handler(req, res)
     # req.query['lala']
     # puts "//////////////////\n[REQUEST] " + req.request_line
     if @@blocked_hosts.include? req.host
@@ -16,49 +21,110 @@ class ProxyHttpServer
   end
 
   def self.block_host host
-    @@blocked_hosts.add host
-    ProxyHttpServer.management_console
+    if !@@blocked_hosts.include? host
+      @@blocked_hosts.add host
+      message = {:command => 'new_block', :host => host}
+      @@clients.each do |client|
+        client.send message.to_json
+      end
+    end
   end
 
   def self.unblock_host host
-    @@blocked_hosts.delete host
-    ProxyHttpServer.management_console
+    if @@blocked_hosts.include? host
+      @@blocked_hosts.delete host
+      message = {:command => 'removed_block', :host => host}
+      @@clients.each do |client|
+        client.send message.to_json
+      end
+    end
   end
 
   def self.management_console
-    erb = ERB.new(File.open(File.expand_path("../../public/html/blocked.html.erb", __FILE__)).read)
+    erb = ERB.new(File.open(File.expand_path("../../public/html/management_console.html.erb", __FILE__)).read)
     erb.result binding
   end
 
-  root = File.expand_path "../"
-  server = WEBrick::HTTPProxyServer.new(
-    :Port => 8989,
-    :ProxyContentHandler => method(:proxy_content_handler),
-    :DocumentRoot => root
-  )
+  def initialize_proxy
+    puts 'Starting proxy'
+    root = File.expand_path "../"
+    server = WEBrick::HTTPProxyServer.new(
+        :Port => PROXY_PORT,
+        :ProxyContentHandler => method(:proxy_content_handler),
+        :DocumentRoot => root
+    )
 
-  server.mount_proc '/management_console' do |req, res|
-    res.body = ProxyHttpServer.management_console
+    server.mount_proc '/management_console' do |req, res|
+      res.body = ProxyHttpServer.management_console
+    end
+
+    server.mount_proc '/block' do |req, res|
+      res.body = ProxyHttpServer.block_host req.query['host']
+    end
+
+    server.mount_proc '/unblock' do |req, res|
+      res.body = ProxyHttpServer.unblock_host req.query['host']
+    end
+
+    server.start
   end
 
-  server.mount_proc '/block' do |req, res|
-    res.body = ProxyHttpServer.block_host req.query['host']
+  def initialize_management_console
+    puts 'Starting management console'
+    @@clients = []
+    EventMachine::WebSocket.start(:host => "0.0.0.0", :port => MANAGEMENT_CONSOLE_PORT) do |ws|
+      ws.onopen {
+        puts "New client connected"
+        @@clients << ws
+      }
+      ws.onmessage { |msg| 
+        puts "Recieved #{msg}"
+        msg = JSON.parse msg
+
+        if msg["command"] == "block"
+          host = msg["host"]
+          ProxyHttpServer.block_host host
+
+        elsif msg["command"] = "unblock"
+          host = msg["host"]
+          ProxyHttpServer.unblock_host host
+
+        end
+      }
+      ws.onclose   {
+        puts "WebSocket closed"
+        @@clients.delete ws
+      }
+    end
   end
 
-  server.mount_proc '/unblock' do |req, res|
-    res.body = ProxyHttpServer.unblock_host req.query['host']
+  def initialize
+    proxy = Thread.new do
+      begin
+        initialize_proxy()
+      rescue => e
+        puts e
+        puts e.backtrace
+      end
+    end
+
+    management_console = Thread.new do
+      begin
+        initialize_management_console()
+      rescue => e
+        puts e
+        puts e.backtrace
+      end
+    end
+
+    proxy.join
+    management_console.join
   end
 
-  server.start
-end
-
-server = Thread.new do
-  begin
+  server = Thread.new do
     ProxyHttpServer.new
-  rescue => e
-    puts e
-    puts e.backtrace
   end
+  server.join
 end
 
-server.join
+
