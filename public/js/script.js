@@ -31,6 +31,21 @@ $(document).ready(function(){
                 var rowToRemove = $("#block-" + encoded_host);
                 rowToRemove.remove();
             }
+            if (message['command'] == 'new_traffic') {
+                var trafficContainer = $('#traffic');
+                var type = message['traffic_type'];
+                var newElement;
+                if (type == 'blocked') {
+                    newElement = "<tr style='color:red'><td>" + message['request'] + "</td><td style='padding-left: 35px'>Blocked</td>"
+                }
+                else if (type == 'cached') {
+                    newElement = "<tr style='color:blueviolet'><td>" + message['request'] + "</td><td style='padding-left: 35px'>Fetched from cache</td>"
+                }
+                else {
+                    newElement = "<tr><td>" + message['request'] + "</td><td style='padding-left: 35px'>Fetched from net</td>"
+                }
+                trafficContainer.append(newElement);
+            }
         }
     };
     ws.onclose = function() {  };

@@ -4,48 +4,56 @@
     <meta charset="UTF-8">
     <title>Management Console</title>
 </head>
-<body>
-<h3>
-    Blocked Hosts
-</h3>
-<div style="padding-left:10px">
-    <table id="blocked-hosts">
-        <th>
-            Host
-        </th>
-        <% @@blocked_hosts.each do |blocked_host| %>
-        <tr id="block-<%=blocked_host%>">
-            <td>
-                <%= blocked_host %>
-            </td>
-            <td style="padding-left:50px">
-                <a class ='ajax' command ="unblock" host="<%= blocked_host %>" href="">
-                    Unblock
-                </a>
-            </td>
-        </tr>
-        <% end %>
-    </table>
+<body style="width:100%">
+<div style="width:30%; float:left">
+  <h3>
+      Blocked Hosts
+  </h3>
+  <div style="padding-left:10px">
+      <table id="blocked-hosts">
+          <th>
+              Host
+          </th>
+          <% @@blocked_hosts.each do |blocked_host| %>
+          <tr id="block-<%=blocked_host%>">
+              <td>
+                  <%= blocked_host %>
+              </td>
+              <td style="padding-left:50px">
+                  <a class ='ajax' command ="unblock" host="<%= blocked_host %>" href="">
+                      Unblock
+                  </a>
+              </td>
+          </tr>
+          <% end %>
+      </table>
+  </div>
+  <h3>
+      Block new Host
+  </h3>
+  <div style="padding-left:10px">
+      <table>
+          <th> Host Name </th>
+          <tr>
+              <td>
+                  <input id="block-new-host-input" type="text"/>
+              </td>
+              <td style="padding-left:50px">
+                  <a class ='ajax' command="block" host="" id="block-new-host-link" href="">
+                      Block
+                  </a>
+              </td>
+          </tr>
+      </table>
+  </div>
 </div>
-<h3>
-    Block new Host
-</h3>
-<div style="padding-left:10px">
-    <table>
-        <th> Host Name </th>
-        <tr>
-            <td>
-                <input id="block-new-host-input" type="text"/>
-            </td>
-            <td style="padding-left:50px">
-                <a class ='ajax' command="block" host="" id="block-new-host-link" href="">
-                    Block
-                </a>
-            </td>
-        </tr>
-    </table>
+<div style="width:70%">
+  <h3>Live Traffic</h3>
+  <table id="traffic" style="padding-left:50px">
+    <th>Request</th>
+    <th style="padding-left: 35px">Action</th>
+  </table>
 </div>
-<div id="msg"></div>
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="/public/js/script.js" defer></script>

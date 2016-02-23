@@ -16,9 +16,21 @@ class ProxyHttpServer
       res.header['content-type'] = 'text/html'
       res.header.delete('content-encoding')
       res.body = "Access is denied."
+
+      message = {:command => 'new_traffic', :traffic_type => 'blocked', :request => req.request_line}
+      @@clients.each do |client|
+        client.send message.to_json
+      end
+
       socket = Thread.current[:WEBrickSocket]
       res.send_response socket
+    else
+      message = {:command => 'new_traffic', :traffic_type => 'fetched_from_net', :request => req.request_line}
+      @@clients.each do |client|
+        client.send message.to_json
+      end
     end
+
   end
 
   def self.block_host host
