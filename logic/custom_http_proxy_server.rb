@@ -9,17 +9,17 @@ class CustomHTTPProxyServer < WEBrick::HTTPProxyServer
   def service(req, res)
     # Attempt to resolve at block
     if Blocker.is_blocked? req
-    res.header['content-type'] = 'text/html'
-    res.header.delete('content-encoding')
-    res.body = "Access is denied."
+      res.header['content-type'] = 'text/html'
+      res.header.delete('content-encoding')
+      res.body = "Access is denied."
 
-    message = {:command => 'log_traffic',
-               :traffic_type => 'blocked',
-               :request => req.request_line}
-    ManagementConsole.message_clients message
+      message = {:command => 'log_traffic',
+                 :traffic_type => 'blocked',
+                 :request => req.request_line}
+      ManagementConsole.message_clients message
 
-    socket = Thread.current[:WEBrickSocket]
-    res.send_response socket
+      socket = Thread.current[:WEBrickSocket]
+      res.send_response socket
 
     # Attempt to resolve at cache
     elsif Cache.contains? req
